@@ -32,7 +32,7 @@ class SignIn extends React.Component{
             <div className='sign-in'>
                 <h2>I already have an account!</h2>
                 <span>Sign in with your email and password</span>
-                <form autocomplete="off" onSubmit={this.handleSubmit}>
+                <form autoComplete="off" onSubmit={this.handleSubmit}>
                     <FormInput 
                         type='email' 
                         name='email' 
