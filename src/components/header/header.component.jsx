@@ -10,7 +10,7 @@ import { ReactComponent as Logo } from '../../assets/crown.svg';
 
 import './header.styles.scss';
 
-const Header = ({currentUser}) => (
+const Header = ({currentUser, hidden}) => (
   <div className='header'>
     <div className='logo-container'>
       <Link className='logo' to='/'>
@@ -28,12 +28,15 @@ const Header = ({currentUser}) => (
       } 
       <CartIcon/>
     </div>
-    <CartDropdown />
+    {
+      hidden ? null : <CartDropdown />
+    }
   </div>
 )
 
-const mapStateToProps = state => ({
-  currentUser : state.user.currentUser
+const mapStateToProps = ({user : {currentUser}, cart: {hidden}}) => ({
+  currentUser,
+  hidden
 })
 
 export default connect(mapStateToProps)(Header);
