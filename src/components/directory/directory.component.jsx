@@ -14,28 +14,33 @@ class Directory extends React.Component {
           title: 'hats',
           imageUrl: 'images/hats.png',
           id: 1,
+          link: 'shop/hats'
         },
         {
           title: 'jackets',
           imageUrl: 'images/jackets.png',
-          id: 2
+          id: 2,
+          link: 'shop/jackets'
         },
         {
           title: 'sneakers',
           imageUrl: 'images/sneakers.png',
-          id: 3
+          id: 3,
+          link: 'shop/sneakers'
         },
         {
           title: 'womens',
           imageUrl: 'images/womens.png',
           size: 'large',
-          id: 4
+          id: 4,
+          link: 'shop/womens'
         },
         {
           title: 'mens',
           imageUrl: 'images/men.png',
           size: 'large',
-          id: 5
+          id: 5,
+          link: 'shop/mens'
         }
       ]
     };
