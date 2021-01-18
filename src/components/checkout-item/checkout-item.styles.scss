@@ -29,6 +29,7 @@
       cursor: pointer;
       margin: 2px;
       transition: 0.1s;
+      user-select: none;
 
       &:hover{
         transform: scale(1.6);
@@ -45,6 +46,7 @@
     padding-left: 12px;
     cursor: pointer;
     transition: 0.1s;
+    user-select: none;
 
       &:hover{
         transform: scale(1.6);
