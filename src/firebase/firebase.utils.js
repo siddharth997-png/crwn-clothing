@@ -39,7 +39,10 @@ export const createUserProfileDocument = async (userAuth,additionalProps) => {
   return userRef;
 }
 
-export const addCollectionsAndDocuments = async (collectionKey,objectsArray) => {
+export const addCollectionsAndDocuments = async (
+  collectionKey,
+  objectsArray
+  ) => {
   const collectionsRef = firestore.collection(collectionKey);
 
   const batch = firestore.batch();
@@ -51,8 +54,8 @@ export const addCollectionsAndDocuments = async (collectionKey,objectsArray) => 
   return await batch.commit();
 }
 
-export const convertCollectionsSnapShotToMap = (collections) => {
-  const transFormedCollection = collections.docs.map( doc => {
+export const convertCollectionsSnapShotToMap = collections => {
+  const transFormedCollection = collections.docs.map(doc => {
     const { title, items } = doc.data();
 
     return{
