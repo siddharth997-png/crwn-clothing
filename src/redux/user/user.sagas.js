@@ -10,14 +10,14 @@ import {
   signInSuccess, 
   signInFailure,
   signOutSuccess,
-  signOutFailure
+  signOutFailure,
 } from './user.actions';
 
 import UserActionTypes from './user.types';
 
-export function* getSnapshotFromUser(userAuth){
+export function* getSnapshotFromUser(userAuth,additionalData){
    try{ 
-    const userRef = yield call(createUserProfileDocument,userAuth);
+    const userRef = yield call(createUserProfileDocument,userAuth,additionalData);
     const snapShot = yield userRef.get();
      yield put(signInSuccess({
       id: snapShot.id,
@@ -81,7 +81,6 @@ export function* onCheckUserSessionSaga(){
 }
 
 export function* signOut(){
-  console.log('inside signout');
   try{
     yield auth.signOut();
     yield put(signOutSuccess());
@@ -90,11 +89,27 @@ export function* signOut(){
   }
 }
 
-export function* signOutSaga(){
+export function* onSignOutSaga(){
   yield takeEvery(
     UserActionTypes.SIGN_OUT_START,
     signOut
   );
+}
+
+export function* signUpSaga({payload:{email, password,displayName}}) {
+  try{
+    const {user} = yield auth.createUserWithEmailAndPassword(email,password);
+    yield getSnapshotFromUser(user,{displayName})
+  } catch(err) {
+    console.log(err)
+  }
+}
+
+export function* onSignUpSaga(){
+  yield takeEvery(
+    UserActionTypes.SIGN_UP_START,
+    signUpSaga
+  )
 }
 
 export function* userSagas() {
@@ -102,6 +117,7 @@ export function* userSagas() {
     call(onGoogleSignInStartSaga),
     call(onEmailSignInStartSaga),
     call(onCheckUserSessionSaga),
-    call(signOutSaga)
+    call(onSignOutSaga),
+    call(onSignUpSaga)
   ]);
 }
