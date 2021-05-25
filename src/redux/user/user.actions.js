@@ -36,3 +36,7 @@ export const signOutFailure = (error) => ({
   payload: error
 })
 
+export const signUpStart = (userCred) => ({
+  type: UserActionTypes.SIGN_UP_START,
+  payload: userCred
+})
